@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch, useSelector } from 'react-redux';
-import { googleLogin } from 'coffeeShop/src/Store/authSlice.js';
+import { googleLogin } from '../../Store/authSlice';
 import { toast } from 'react-toastify';
 
 const GoogleAuthButton = ({ onSuccess }) => {

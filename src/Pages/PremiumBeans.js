@@ -117,20 +117,6 @@ const CoffeeMedium = styled.div`
   }
 `;
 
-const CoffeeMediumBefore = styled.div`
-  width: 90%;
-  height: 100px;
-  background-color: #776f6e;
-  position: absolute;
-  bottom: 0;
-  left: calc(50% - 45%);
-  border-radius: 20px 20px 0 0;
-
-  @media (max-width: 768px) {
-    height: 80px;
-  }
-`;
-
 const CoffeeExit = styled.div`
   width: 60px;
   height: 20px;
@@ -493,35 +479,6 @@ const CardDescription = styled.p`
 
   @media (max-width: 768px) {
     font-size: 0.9rem;
-  }
-`;
-
-const LearnMoreButton = styled.button`
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-  background: #41bdad;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: 5px;
-  padding: 10px 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    background: #2d8f8e;
-    transform: translateY(-3px);
-  }
-
-  &:active {
-    transform: translateY(1px);
-    background: #1e7c7a;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-    padding: 8px 16px;
   }
 `;
 

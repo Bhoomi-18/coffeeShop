@@ -1,6 +1,8 @@
-# MsCafe ☕️
+# ☕ Coffee Shop - Open Source E-commerce Platform
 
-MsCafe was founded with a simple mission: to serve the best coffee in town. Our passion for quality beans and expert brewing techniques has made us a favorite among coffee enthusiasts. We source our beans from sustainable farms around the world, ensuring that every cup of coffee you enjoy is not only delicious but also ethically produced.
+A modern, full-stack coffee shop e-commerce application built with React.js and Node.js.
+
+![Coffee Shop Banner](./public/3817208_coffee_cup_drink_icon.png)
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -8,142 +10,102 @@ MsCafe was founded with a simple mission: to serve the best coffee in town. Our 
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Known Issues](#known-issues)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project Overview
 
-MsCafe is a web application that offers an elegant, user-friendly interface for browsing our extensive coffee menu, placing online orders, and learning about our sustainably sourced beans. Whether you’re looking to order your favorite brew or learn more about coffee origins, MsCafe provides an excellent user experience for every coffee lover.
+## 🚀 Features
 
-## Features
-- **Browse Menu:** Explore our coffee varieties with detailed descriptions and pricing.
-- **Sustainability Info:** Learn about our ethical sourcing and the farms we partner with.
-- **Responsive Design:** The website is fully responsive for desktops, tablets, and mobile devices.
-- **Order Coffee:** Add items to your cart and place orders (future feature).
+- **User Authentication**: Email/Password and Google OAuth login
+- **Product Catalog**: Browse coffee, cakes, milkshakes, and soups  
+- **Shopping Cart**: Add/remove items with real-time updates
+- **Order Management**: Place and track orders
+- **Product Reviews**: Rate and review products
+- **Admin Panel**: Manage products, orders, and users
+- **Responsive Design**: Mobile-friendly interface
+- **Customer Support**: Interactive chatbot
 
-## Tech Stack
-- **Frontend:** React, CSS
-- **State Management:** React Context API
-- **Backend:** Node.js, Express (planned for future)
-- **Database:** MongoDB (planned for future)
+## 🛠️ Tech Stack
 
-## Installation
+### Frontend
+- **React.js** - UI Framework
+- **Redux Toolkit** - State Management  
+- **Tailwind CSS** - Styling
+- **React Router** - Navigation
+
+### Backend
+- **Node.js & Express.js** - Server
+- **MongoDB** - Database
+- **JWT & Passport.js** - Authentication
+- **PM2** - Process Management
+
+## 📦 Quick Start
 
 ### Prerequisites
-Before you begin, ensure you have installed the following:
-- [Node.js](https://nodejs.org/) (v14.x or higher)
-- [npm](https://www.npmjs.com/) (v6.x or higher)
-- MongoDB (local or Atlas)
-- Google Cloud Console project
+- Node.js (v18+)
+- MongoDB
+- Git
 
-### Setup
-Follow the steps below to set up the project locally:
+### Installation
 
-#### Step 1: Clone the repository
+1. **Clone the repository**
 ```bash
-# Clone the MsCafe repository
-
-git clone https://github.com/your-username/coffeeShop.git
-
-# Navigate into the project directory
-cd coffeeShop
- # Install the required npm packages
-npm install
-
 git clone https://github.com/Mujtabaa07/coffeeShop.git
-```
-```bash
-# Navigate into the project directory
 cd coffeeShop
 ```
 
-### Step 2: Google OAuth Setup
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing one
-3. Enable Google+ API
-4. Go to "Credentials" → "Create Credentials" → "OAuth 2.0 Client IDs"
-5. Set authorized JavaScript origins: `http://localhost:3000`
-6. Set authorized redirect URIs: `http://localhost:5001/api/auth/google/callback`
-7. Copy Client ID and Client Secret
-
-### Step 3: MongoDB Atlas Setup
-
-#### 1. Create Account
-- Go to MongoDB Atlas
-- Click "Try Free"
-- Sign up with email or Google
-- Verify your email address
-
-#### 2. Create Cluster
-- Choose deployment: Select "Shared" (Free tier)
-- Cloud Provider: Choose AWS, Google Cloud, or Azure
-- Region: Select closest to your location
-- Cluster Name: mscafe-cluster (or your preferred name)
-- Click "Create Cluster" (takes 3-5 minutes)
-
-#### 3. Create Database User
-- Go to "Database Access" in left sidebar
-- Click "Add New Database User"
-- Authentication Method: Password
-- Username: mscafe-admin
-- Password: Generate secure password or create your own
-- Database User Privileges: Select "Read and write to any database"
-- Click "Add User"
-
-#### 4. Configure Network Access
-- Go to "Network Access" in left sidebar
-- Click "Add IP Address"
-- For Development: Click "Allow Access from Anywhere" (0.0.0.0/0)
-- For Production: Add your server's specific IP
-- Click "Confirm"
-
-#### 5. Get Connection String
-- Go to "Clusters" and click "Connect"
-- Choose "Connect your application"
-- Driver: Node.js
-- Version: 4.1 or later
-- Copy connection string
-
-### Step 4: JWT_SECRET
-```bash
-# Run this cmd in your backend directory
-
-node -e "console.log('JWT_SECRET=' + require('crypto').randomBytes(64).toString('hex'))" 
-```
-
-### Step 5: SESSION_SECRET
-```bash
-# Run this cmd in your backend directory
-
-node -e "console.log('SESSION_SECRET=' + require('crypto').randomBytes(64).toString('hex'))"
-```
-
-## Installation
-### 1. Install frontend dependencies
-```bash
-  npm install
-```
-
-### 2. Install backend dependencies
+2. **Setup Backend**
 ```bash
 cd backend
 npm install
-```
 
-### 3. Set up environment variables
-```bash
+# Create your local environment file
 cp .env.example .env
-# Fill in your Google OAuth credentials and MongoDB URI
+# OR copy from the local example
+cp .env.local.example .env
+
+# Edit .env with your actual values (MongoDB URI, JWT secret, Google OAuth, etc.)
+nano .env
+
+# Start the backend server
+npm start
 ```
 
-### 4. Start MongoDB (if running locally)
-
-### 5. Run the application
+3. **Setup Frontend**
 ```bash
-# Run both frontend and backend
-npm run dev
+# In project root directory
+npm install
 
+# Create your local environment file
+cp .env.example .env.local
+# OR copy from the local example  
+cp .env.local.example .env.local
+
+# Edit .env.local with your API URL and Google Client ID
+nano .env.local
+
+# Start the frontend
+npm start
+```
+
+4. **Open your browser**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3000/api
+
+## ⚙️ Environment Configuration
+
+
+### Backend (.env)
+Create a `.env` file in the `backend/` directory:
+```env
+MONGODB_URI=mongodb://localhost:27017/mscafe_coffeeshop
+JWT_SECRET=your-jwt-secret-key
+GOOGLE_CLIENT_ID=your-google-client-id  
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+PORT=3000
+NODE_ENV=development
 # Or run separately:
 # Backend: cd backend && npm run dev
 # Frontend: npm start
@@ -156,6 +118,22 @@ Once the server is running, you can view the app at (http://localhost:3000).
 - **View Coffee Menu:** Browse through the available coffee items on the homepage.
 - **Learn About Coffee:** Check out the sourcing section to learn more about our sustainably sourced beans.
 - **Place an Order:** In future releases, you'll be able to add items to the cart and complete orders.
+
+## Known Issues
+
+### 1. Edit Profile Button Not Functional
+
+The **Edit Profile** button on the user profile screen is currently non-functional, clicking or tapping it does not trigger any visible action.
+
+#### Possible Causes
+- The button may lack an `onClick` or equivalent event handler
+- The navigation route to the Edit Profile screen may be missing or misconfigured
+- The Edit Profile screen/component might not be implemented or properly linked
+
+#### Suggested Troubleshooting
+- Check if the button has a correctly assigned event handler
+- Verify that navigation to the Edit Profile screen is set up and routed properly
+- Confirm that the target screen/component exists and is integrated into the navigation system
 
 ## ScreenShots
 ## **Home Page:** 
@@ -172,59 +150,47 @@ We welcome contributions! Follow the steps below to contribute to this project:
 ```bash
 # Click the "Fork" button at the top-right of the repository page to create a copy in your GitHub account.
 ```
-```bash
-# Clone the forked repository to your local machine
-git clone https://github.com/Mujtabaa07/coffeeShop.git
-```
-```bash
-# Navigate into the project directory
-cd coffeeShop
-```
-```bash
-# install dependencies
-npm install (or) npm i
-```
-```bash
-# Create a new branch for your feature or fix
-git checkout -b feature/your-feature-name
-```
-```bash
-# Make Your Changes
-Make sure your changes adhere to the project standards and structure.
-# Stage all changes
-git add .
-```
-```bash
-# Commit the changes with a descriptive message
-git commit -m "Description of the feature or fix"
-```
-```bash
-# Push your branch to your forked repository
-git push origin feature/your-feature-name
-```
-```bash
-# Go to the original repository on GitHub and open a new Pull Request
-# Provide a clear description of your changes in the Pull Request.
+
+### Frontend (.env.local)
+Create a `.env.local` file in the root directory:
+```env
+REACT_APP_API_URL=http://localhost:3000/api
+REACT_APP_GOOGLE_CLIENT_ID=your-google-client-id
 ```
 
+**Note**: Your local `.env` files are ignored by Git for security. Use the provided `.env.example` files as templates.
 
-<div>
-  <h2 align="center"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" width="35" height="35"> Our Contributors</h2>
-  <div align="center">
-    <h3>Thank you for contributing to our project</h3
-<p align="center">
-      <a href="https://github.com/Mujtabaa07/coffeeShop/graphs/contributors">
-        <img src="https://api.vaunt.dev/v1/github/entities/Mujtabaa07/repositories/coffeeShop/contributors?format=svg&limit=54" width="700" height="250" />
-      </a>
- </p>
-<a href="https://github.com/Mujtabaa07/coffeeShop/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Mujtabaa07/coffeeShop&max=300" />
-</a>
-    
+## 🌐 Live Demo
 
+- **Frontend**: [https://coffee-shop-teal.vercel.app](https://coffee-shop-teal.vercel.app)
+- **API**: Contact for backend access
 
-  </div>
-</div>
+## 📱 Screenshots
 
+*Coming soon - Add your screenshots here*
 
-<h3 align="center"> Happy Coding ☕️</h3>
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`) 
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Mujtabaa07** - [GitHub](https://github.com/Mujtabaa07)
+
+## ⭐ Support
+
+If you find this project helpful, please give it a star! ⭐
+
+---
+
+Made with ❤️ and lots of ☕

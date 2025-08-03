@@ -82,15 +82,6 @@ const Answer = styled(motion.p)`
   transition: max-height 0.4s ease-out;
 `;
 
-const ArrowIcon = styled.div`
-  font-size: 2rem; /* Ensures arrow is large enough */
-  transition: transform 1s ease;
-  transform: ${({ isOpen }) => (isOpen ? "rotate(180deg)" : "rotate(180deg)")};
-  margin-left: 1rem;
-  display: inline-block;
-  vertical-align: middle;
-`;
-
 function FAQ() {
   
   const [openFAQ, setOpenFAQ] = useState(null); // State to track the currently open FAQ

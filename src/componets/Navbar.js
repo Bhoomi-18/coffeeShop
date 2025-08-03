@@ -18,7 +18,7 @@ const NavbarContainer = styled(motion.nav)`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 998;
   border-bottom: 1px solid rgba(210, 105, 30, 0.3);
   transition: all 0.3s ease;
 
@@ -319,26 +319,25 @@ function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = (dropdown) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-  };
-
   const navItems = [
     { title: "Home", path: "/", icon: <FaCoffee /> },
     { 
       title: "Menu", 
-      path: "/menu",
+      path: null, // Remove path so it doesn't redirect
       dropdown: [
-        { title: "Coffee", path: "/menu/coffee" },
-        { title: "Cakes", path: "/menu/cakes" },
-        { title: "Soups", path: "/menu/soups" },
-        { title: "Milkshakes", path: "/menu/milkshakes" }
+        { title: "Coffee", path: "/shop/coffee" },
+        { title: "Cakes", path: "/shop/cake" },
+        { title: "Soups", path: "/shop/soup" },
+        { title: "Milkshakes", path: "/shop/milkshake" }
       ]
     },
     { title: "About", path: "/about" },
     { title: "Stories", path: "/stories" },
     { title: "Contact", path: "/contact" },
-    { title: "Feedback", path: "/feedback" }
+    { title: "Feedback", path: "/feedback" },
+    { title: "Shop", path: "/shop" },
+    
+
   ];
 
   return (
@@ -361,15 +360,29 @@ function Navbar() {
         <NavLinks>
           {navItems.map((item) => (
             <NavItem 
-              key={item.path}
+              key={item.path || item.title}
               className={location.pathname === item.path ? "active" : ""}
               onMouseEnter={() => item.dropdown && setActiveDropdown(item.title)}
               onMouseLeave={() => item.dropdown && setActiveDropdown(null)}
             >
-              <Link to={item.path}>
-                {item.icon && <span>{item.icon}</span>}
-                {item.title}
-              </Link>
+              {item.path ? (
+                <Link to={item.path}>
+                  {item.icon && <span>{item.icon}</span>}
+                  {item.title}
+                </Link>
+              ) : (
+                <span 
+                  style={{ 
+                    cursor: item.dropdown ? 'default' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}
+                >
+                  {item.icon && <span>{item.icon}</span>}
+                  {item.title}
+                </span>
+              )}
               
               {item.dropdown && (
                 <DropdownMenu
@@ -457,15 +470,22 @@ function Navbar() {
             transition={{ type: "tween", duration: 0.3 }}
           >
             {navItems.map((item) => (
-              <React.Fragment key={item.path}>
+              <React.Fragment key={item.path || item.title}>
                 <MobileNavItem
                   className={location.pathname === item.path ? "active" : ""}
-                  onClick={() => !item.dropdown && setIsMobileMenuOpen(false)}
+                  onClick={() => !item.dropdown && item.path && setIsMobileMenuOpen(false)}
                 >
-                  <Link to={item.path}>
-                    {item.icon && <span>{item.icon}</span>}
-                    {item.title}
-                  </Link>
+                  {item.path ? (
+                    <Link to={item.path}>
+                      {item.icon && <span>{item.icon}</span>}
+                      {item.title}
+                    </Link>
+                  ) : (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      {item.icon && <span>{item.icon}</span>}
+                      {item.title}
+                    </span>
+                  )}
                   
                   {item.dropdown && (
                     <MobileDropdownMenu>

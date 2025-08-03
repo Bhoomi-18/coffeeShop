@@ -141,7 +141,6 @@ const QuantityDisplay = styled.span`
 function Coffee() {
   const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
   const [likedProducts, setLikedProducts] = useState({});
 
   // Load favorites from localStorage when component mounts

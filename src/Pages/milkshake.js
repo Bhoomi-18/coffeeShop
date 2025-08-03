@@ -133,47 +133,12 @@ const QuantityDisplay = styled.span`
   min-width: 20px;
   text-align: center;
 `;
-const SearchFilterContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  
-  margin-bottom: 2rem;
-  gap: 5rem;
-`;
-const SearchInput = styled.input`
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px 0 0 4px;
-  outline: none;
-  width: 300px;
-
-  &:focus {
-    border-color: #6b4f4f;
-  }
-`;
-
-const SearchButton = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background: linear-gradient(145deg, #6b4f4f, #7d5858);
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: linear-gradient(145deg, #7d5858, #8e6a6a);
-  }
-`;
 
 
 
 function Milkshake() {
   const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
   const [likedProducts, setLikedProducts] = useState({});
 
   const toggleHeart = (productId) => {

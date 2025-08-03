@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
-const OPENAI_API_KEY = 'REACT_APP_OPENAI_API_KEY'; 
+import { motion } from 'framer-motion'; 
 
 
 const ExpertContainer = styled.div`

@@ -10,7 +10,6 @@ function Feedback() {
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [visitType, setVisitType] = useState('dine-in');
-  const [followUp, setFollowUp] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();

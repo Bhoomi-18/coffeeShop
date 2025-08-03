@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   googleId: {
     type: String,
-    required: true,
-    unique: true
+    unique: true,
+    sparse: true, // This allows multiple null values but unique non-null values
+    default: undefined // Use undefined instead of null to work with sparse index
   },
   name: {
     type: String,
@@ -15,12 +16,19 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  password: {
+    type: String,
+    required: function() {
+      return this.provider === 'email'; // Only required for email registration
+    }
+  },
   avatar: {
     type: String
   },
   provider: {
     type: String,
-    default: 'google'
+    enum: ['google', 'email'],
+    default: 'email'
   },
   loyaltyPoints: {
     type: Number,

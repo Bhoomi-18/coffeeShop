@@ -137,7 +137,6 @@ const QuantityDisplay = styled.span`
 function Soup() {
   const dispatch = useDispatch();
   const [quantities, setQuantities] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
   const [likedProducts, setLikedProducts] = useState({});
 
   const toggleHeart = (productId) => {

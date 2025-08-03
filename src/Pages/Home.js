@@ -192,6 +192,11 @@ const SpecialtySection = styled.section`
     font-size: 2.5rem;
     color: #ffe4b5;
     font-family: "Playfair Display", serif;
+    
+    @media (max-width: 768px) {
+    font-size: 6vw;
+    top: 1rem;
+}
   }
 `;
 

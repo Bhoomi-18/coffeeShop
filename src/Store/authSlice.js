@@ -1,12 +1,14 @@
 // authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
 // Async thunks for Google Authentication
 export const googleLogin = createAsyncThunk(
   'auth/googleLogin',
   async (credential, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5001/api'}/auth/google`, {
+      const response = await fetch(`${API_URL}/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export const getCurrentUser = createAsyncThunk(
         throw new Error('No token found');
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5001/api'}/auth/user`, {
+      const response = await fetch(`${API_URL}/auth/user`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -63,6 +65,40 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
+export const updateProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async (profileData, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      const response = await fetch(`${API_URL}/auth/profile`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profileData)
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Profile update failed');
+      }
+
+      // Update localStorage
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logoutUser = createAsyncThunk(
   'auth/logoutUser',
   async (_, { rejectWithValue }) => {
@@ -70,7 +106,7 @@ export const logoutUser = createAsyncThunk(
       const token = localStorage.getItem('token');
       
       if (token) {
-        await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5001/api'}/auth/logout`, {
+        await fetch(`${API_URL}/auth/logout`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -144,9 +180,22 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     // Keep your existing actions for backward compatibility
-    login: (state) => {
+    login: (state, action) => {
       state.isLoggedIn = true;
       state.isAuthenticated = true;
+      if (action.payload) {
+        state.user = action.payload;
+        state.loyaltyPoints = action.payload.loyaltyPoints || 0;
+        state.favoriteOrders = action.payload.favoriteOrders || [];
+      } else {
+        // Fallback to localStorage if no payload
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          state.user = JSON.parse(storedUser);
+          state.loyaltyPoints = state.user.loyaltyPoints || 0;
+          state.favoriteOrders = state.user.favoriteOrders || [];
+        }
+      }
     },
     logout: (state) => {
       state.isLoggedIn = false;
@@ -310,6 +359,21 @@ const authSlice = createSlice({
         state.loyaltyPoints = 0;
         state.favoriteOrders = [];
         state.orderHistory = [];
+        state.error = action.payload;
+      })
+      
+      // Update Profile cases
+      .addCase(updateProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.error = null;
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.payload;
       });
   }
