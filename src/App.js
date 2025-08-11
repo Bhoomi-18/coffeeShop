@@ -38,6 +38,7 @@ import ExpertBaristas from './Pages/ExpertBaristas';
 import CozyAmbiance from './Pages/CozyAmbiance';
 import Feedback from './Pages/Feedback';
 import Favorites from './Pages/favorites';
+import Wishlist from './Pages/wishlist';
 import Reviews from './componets/Reviews';
 import AnimatedCursor from 'react-animated-cursor';
 
@@ -110,10 +111,10 @@ const AppContent = () => {
       <AnimatedCursor
         innerSize={20}
         outerSize={20}
-        color="104, 225, 239"
+        color="210, 105, 30"
         outerAlpha={0.2}
         innerScale={0.7}
-        outerScale={5}
+        outerScale={4}
       />
 
       <ToastContainer 
@@ -196,9 +197,7 @@ const AppContent = () => {
       {/* Add Chatbot so it floats on every page */}
       <Chatbot />
 
-
-          <ToastContainer position="top-right" autoClose={3000} />
-
+   <ToastContainer position="top-right" autoClose={2000} />
           <ContentContainer>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -228,6 +227,7 @@ const AppContent = () => {
               <Route path="/expertbaristas" element={<ExpertBaristas />} />
               <Route path="/cozyambiance" element={<CozyAmbiance />} />
               <Route path="/favorites" element={<Favorites />} />
+              <Route path="/wishlist" element={<Wishlist />} />
             </Routes>
           </ContentContainer>
 

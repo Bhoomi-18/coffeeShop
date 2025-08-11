@@ -8,12 +8,17 @@ A modern, full-stack coffee shop e-commerce application built with React.js and 
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Project Structure](#project-overview)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Known Issues](#known-issues)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
+
+
+## 🌐 Project Overview
+👉 [Try the app on Vercel](https://coffee-shop-teal.vercel.app)
 
 
 ## 🚀 Features
@@ -47,6 +52,63 @@ A modern, full-stack coffee shop e-commerce application built with React.js and 
 - Node.js (v18+)
 - MongoDB
 - Git
+
+
+### 📁 Project Structure :
+
+```
+
+☕ coffeeShop/
+├── .github/                        # GitHub configuration
+│   ├── ISSUE_TEMPLATE/            # Standardized issue templates
+│   │   ├── Bug-report.yaml
+│   │   ├── Doc.yaml
+│   │   ├── Feature-Request.yaml
+│   │   └── general_issues.yaml
+│   ├── workflow/                  # CI/CD GitHub Actions
+│   │   ├── PRs.yaml
+│   │   ├── auto-comment-pr.yaml
+│   │   ├── auto-comment.yaml
+│   │   ├── autoCloseLinkedIssues.yaml
+│   │   └── main.yaml
+│   └── PULL_REQUEST_TEMPLATE.md   # Template for pull requests
+│
+├── backend/                       # Backend logic and APIs
+│   ├── __tests__/                 # Test suites
+│   ├── config/                    # App configuration and constants
+│   ├── middleware/               # Express middleware (auth, logging, etc.)
+│   ├── models/                    # Mongoose data models
+│   ├── routes/                    # API route handlers
+│   └── seeders/                   # Seed data for DB initialization
+│
+├── public/                        # Static assets like icons and images
+│
+├── src/                           # Frontend source code
+│   ├── Pages/                     # Page-level components for routing
+│   ├── Store/                     # State management (Redux, Zustand, etc.)
+│   ├── components/                # Reusable UI components
+│   ├── services/                  # API interactions and service logic
+│   └── utils/                     # Utility functions
+│       ├── App.css
+│       ├── App.js
+│       ├── App.test.js
+│       ├── index.css
+│       ├── index.js
+│       ├── logo.svg
+│       ├── reportWebVitals.js
+│       └── setupTests.js
+│
+├── .gitignore                     # Specifies files to exclude from git
+├── CODE_OF_CONDUCT.md            # Community standards and behavior
+├── CONTRIBUTING.md               # Guidelines for contributing to the project
+├── LICENSE                       # Legal license (e.g., MIT, Apache)
+├── README.md                     # Entry point for documentation
+├── package-lock.json             # Exact dependency versions
+├── package.json                  # Project metadata and dependencies
+├── postcss.config.js             # CSS transformer configuration
+└── tailwind.config.js            # TailwindCSS styling configuration
+```
+
 
 ### Installation
 
@@ -174,10 +236,21 @@ REACT_APP_GOOGLE_CLIENT_ID=your-google-client-id
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`) 
-5. Open a Pull Request
+2. Clone your fork locally (`git clone https://github.com/<your-username>/coffeeShop.git
+                            cd coffeeShop`)
+3. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`) 
+6. Open a Pull Request
+   
+
+##  📌 Contribution Tips
+
+- Use the ISSUE_TEMPLATE for bugs, feature requests, or improvements.
+- Follow the CODE_OF_CONDUCT.md and keep things respectful and inclusive.
+- Review the CONTRIBUTING.md for detailed guidance.
+New to open source? Don’t worry — this project is beginner-friendly! 🌱
+
 
 ## 📄 License
 
@@ -193,4 +266,7 @@ If you find this project helpful, please give it a star! ⭐
 
 ---
 
-Made with ❤️ and lots of ☕
+<div align="center" >
+  Made with ❤️ and lots of ☕
+</div>
+
